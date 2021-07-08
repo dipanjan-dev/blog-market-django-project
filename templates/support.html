@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block supportac %}
+active
+{% endblock %}
+{% block title %}
+
+Support Us
+
+{% endblock title %}
+{% block body %}
+
+<div class="container mt-5 mb-5 d-flex justify-content-center align-items-center">
+     <div class="card shadow-lg text-center" style="width: 40rem;">
+          <div class="card-body">
+            <h4 class="card-title">Support Us</h4>
+            <p class="card-text">money or physical things that are provided to someone who needs them: The government promised financial support to the areas affected by the flooding.</p>
+            <form><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_HWLYl17GkLec3o" async> </script> </form>
+          </div>
+        </div>
+
+</div>
+
+{% endblock body %}

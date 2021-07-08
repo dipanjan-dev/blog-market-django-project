@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+  Welcome to Blog Mart
+{% endblock title %}
+
+{% block body %}
+
+<div class="container mt-5">
+    {% if blogs|length < 1 %}
+     <h3 class="fs-3 fw-bold text-center">Not Found</h3>
+    {% else %}
+    <h3 class="fs-3 fw-bold text-center">Your Search result</h3>
+     {% endif %}
+     <!-- <p class="text-muted text-center">Blogger is an American online content management system which enables multi-user blogs with time-stamped entries.</p> -->
+     <div class="container d-flex justify-content-center align-items-center">
+          <div class="row ">
+
+
+          {% if blogs|length < 1 %}
+          <p class="text-center" > your search - <span class="fw-bolder"> {{posts | slice:'100'}} ... </span> -  Did not match any documents</p> 
+          <p>Suggestions</p>
+          <ul>
+            <li>Try Different keywords</li>
+            <li>Search By title</li>
+            <li>Make sure that your all keywords correct</li>
+          </ul>
+          {% endif %}
+
+          {% for blog in blogs %}
+          <!-- repeat strat here -->
+            <div class="col m-4">
+               <div class="card shadow" style="width: 30rem;">
+                <img src="/media/{{blog.image}}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <p class="text-uppercase text-muted fw-bold" style="font-size: 12px">{{blog.blog_category}} </p>
+                      <h5 class="card-title">{{blog.blog_title |slice:'20'}} <span class="text-muted"> ...</span> </h5>
+                      <p class="card-text text-muted">{{blog.blog_content |slice:'100'}}<span class="text-muted"> ...</span></p>
+                      <a href="post/{{blog.blog_title}}" class="btn btn-primary btn-sm">Read More</a>
+                    </div>
+                  </div>
+            </div>
+            <!-- end here -->
+          {% endfor %}
+          </div>
+        </div>
+        
+</div>
+{% endblock body %}

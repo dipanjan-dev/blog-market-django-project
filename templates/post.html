@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+
+{{ blogs.blog_title }}
+
+{% endblock title %}
+
+{% block body %}
+
+{% if user.is_authenticated %}
+
+<div class="container-fluid ">
+  <div class="row">
+    <div class="col-12 col-sm-12 col-md-7 col-lg-9 col-xxl-9">
+      <div class="container ">
+      <h2 class="text-center fw-bold mt-5">{{blogs.blog_title}}</h2>
+      <p class="text-muted text-center">Article By {{blogs.blog_author}}</p>
+      <hr class="mt-5">
+      <img src="/media/{{blogs.image}}" class="image-fluid" alt="..." style="height: 300px; width: 700px">
+      <p class="text-break mt-5">
+           {{blogs.blog_content}}
+      </p>
+      <p class="text-muted " style="margin-top : 80px">Upload At: {{blogs.blog_uploaded_at}}</p>
+      <p class="text-muted " style="margin-top : -10px">Updated At: {{blogs.blog_updated_at}} </p>
+    </div>
+  </div>
+    <div class="col-12 col-sm-12 col-md-5 col-lg-3 col-xxl-3" style="border-left: 2px solid black; background-color: rgb(250, 250, 250);">
+     <h5 class="mt-4 mb-3">Most Popular Blogs</h5>
+     <hr>
+      {% for allblog in blogposts %}
+      <ul>
+        <li style="margin-left: -10px; margin-bottom:-2px;"><a href="/post/{{ allblog.blog_title}}" target="_blank" style="text-decoration:none; color: black">{{ allblog.blog_title }}
+        <p class="text-muted text-break">{{ allblog.blog_content | slice:'80' }}</p>
+      </a>
+        </li>
+      </ul>
+    
+      {% endfor %} 
+
+  </div>
+</div>
+</div>
+
+{% else %}
+<div class="container mt-5 mb-5 text-center">
+<h3 class="text-muted pt-5 pb-5 text-center">For read this artical you need an account</h3>
+<a class="btn btn-primary me-1" href="{% url 'register' %}">REGISTER</a>
+<a class="btn btn-primary me-2 " href="{% url 'login' %}">LOGIN</a>
+</div>
+{% endif %}
+
+{% endblock body %}
